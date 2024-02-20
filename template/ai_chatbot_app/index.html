@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ask Question</title>
+  </head>
+  <body>
+    <h1>Ask Question: {{ question }}</h1>
+    <hr />
+    <form method="post" action="{% url 'ask_question' %}">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit" name="submit" value="submit">Submit</button>
+    </form>
+    {% if response %}
+    <hr />
+    <p><b>Answer: {{response.ai_answer}}</b></p>
+    <hr />
+    <h1>THis is sourec of answer:</h1>
+    <div><p>{{ response.text }}</p></div>
+    {% endif %}
+  </body>
+</html>
